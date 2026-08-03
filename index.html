@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f5f8" />
+    <title>Organize — Todo list</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#"><span class="brand-mark">O</span><span>organize</span></a>
+        <nav class="nav" aria-label="Task views">
+          <button class="nav-item active" data-filter="today"><span class="nav-icon">☀</span>Today <b id="todayCount">0</b></button>
+          <button class="nav-item" data-filter="upcoming"><span class="nav-icon">◷</span>Upcoming <b id="upcomingCount">0</b></button>
+          <button class="nav-item" data-filter="all"><span class="nav-icon">☷</span>All tasks <b id="allCount">0</b></button>
+        </nav>
+        <div class="projects-heading"><span>MY PROJECTS</span><button id="addProject" title="Add project">+</button></div>
+        <div id="projectList" class="project-list"></div>
+        <div class="sidebar-bottom">
+          <button class="new-task side-new" id="sideNewTask"><span>＋</span> New task</button>
+          <div class="profile"><div class="avatar">PM</div><div><strong>Patricia Mills</strong><small>Free plan</small></div><button aria-label="Profile menu">•••</button></div>
+        </div>
+      </aside>
+
+      <section class="workspace">
+        <header class="topbar">
+          <button class="mobile-menu" aria-label="Open menu">☰</button>
+          <div class="search"><span>⌕</span><input id="searchInput" placeholder="Search tasks" /><kbd>⌘ K</kbd></div>
+          <div class="top-actions"><button class="icon-button" id="themeToggle" title="Toggle theme">◐</button><button class="help-button">?</button></div>
+        </header>
+        <div class="content">
+          <div class="page-title-row">
+            <div><p class="eyebrow" id="dateLabel">MONDAY, JULY 22</p><h1 id="pageTitle">Today</h1><p class="subtitle" id="pageSubtitle">You have tasks to focus on.</p></div>
+            <button class="new-task" id="newTask"><span>＋</span> New task</button>
+          </div>
+          <div class="progress-card"><div class="progress-copy"><span>YOUR PROGRESS</span><strong id="progressText">0 of 0 tasks complete</strong></div><div class="progress-bar"><i id="progressBar"></i></div><strong id="progressPercent">0%</strong></div>
+          <div class="task-toolbar"><div class="segmented"><button class="selected" data-view="list">☷ List</button><button data-view="board">▦ Board</button></div><button class="sort-button" id="sortButton">⇅ Sort by <b>Due date</b></button></div>
+          <div id="taskArea" class="task-area"></div>
+          <button id="addTaskInline" class="add-task-inline"><span>＋</span> Add a task</button>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="taskDialog">
+      <form id="taskForm" method="dialog">
+        <div class="modal-heading"><h2 id="dialogTitle">New task</h2><button type="button" class="close" id="closeDialog">×</button></div>
+        <label>Task name<input id="taskName" required maxlength="90" placeholder="What needs to be done?" /></label>
+        <label>Project<select id="taskProject"></select></label>
+        <label>Due date<input id="taskDate" type="date" /></label>
+        <label>Notes<textarea id="taskNotes" maxlength="220" placeholder="Add a note (optional)"></textarea></label>
+        <div class="modal-actions"><button type="button" class="delete-task" id="deleteTask">Delete task</button><span></span><button type="button" class="cancel" id="cancelDialog">Cancel</button><button class="save" value="default">Save task</button></div>
+      </form>
+    </dialog>
+    <script src="app.js"></script>
+  </body>
+</html>
